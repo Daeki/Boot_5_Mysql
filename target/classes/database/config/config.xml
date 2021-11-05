@@ -8,6 +8,9 @@
   		<typeAlias type="com.iu.b5.board.BoardVO" alias="BoardVO"/>
   		<typeAlias type="com.iu.b5.board.BoardFileVO" alias="BoardFileVO"/>
   		<typeAlias type="com.iu.b5.board.notice.NoticeVO" alias="NoticeVO"/>
+  		<typeAlias type="com.iu.b5.member.MemberVO" alias="MemberVO"/>
+  		<typeAlias type="com.iu.b5.member.MemberFilesVO" alias="MemberFilesVO"/>
+  		
   		<typeAlias type="com.iu.b5.util.Pager" alias="Pager"/>
   		
   		<typeAlias type="java.lang.Long" alias="Long"/>
