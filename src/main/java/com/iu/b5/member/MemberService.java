@@ -26,11 +26,14 @@ public class MemberService {
 		if(!files.isEmpty()) {
 			String fileName = fileManager.getUseServletContext("upload/member", files);
 			MemberFilesVO memberFilesVO = new MemberFilesVO();
-			//memberFilesVO.setMember_id(memberVO.getId());
-			memberFilesVO.setMember_id("111111");
+			memberFilesVO.setMember_id(memberVO.getId());
 			memberFilesVO.setFileName(fileName);
 			memberFilesVO.setOriName(files.getOriginalFilename());
 			result = memberRepository.setFileInsert(memberFilesVO);
+			
+			if(result==0) {
+				throw new Exception();
+			}
 		}
 		return result;
 	}
