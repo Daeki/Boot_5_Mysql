@@ -13,6 +13,10 @@ public class MemberService {
 	@Autowired
 	private FileManager fileManager;
 	
+	public MemberVO getSelectOne(MemberVO memberVO)throws Exception{
+		return memberRepository.getSelectOne(memberVO);
+	}
+	
 	public int setInsert(MemberVO memberVO, MultipartFile files)throws Exception{
 		int result = memberRepository.setInsert(memberVO);
 		
