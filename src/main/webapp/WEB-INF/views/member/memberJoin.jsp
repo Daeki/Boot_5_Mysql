@@ -12,6 +12,7 @@
 	<form action="./memberJoin" method="post" enctype="multipart/form-data">
 		ID : <input type="text" name="id"><br>
 		PW : <input type="password" name="pw"><br>
+		Pwcheck : <input type="password" name="pwCheck"><br>
 		Name : <input type="text" name="name"><br>
 		Email: <input type="email" name="email"><br>
 		Photo : <input type="file" name="files"><br>

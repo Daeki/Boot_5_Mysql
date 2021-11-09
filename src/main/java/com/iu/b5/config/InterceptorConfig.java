@@ -30,10 +30,10 @@ public class InterceptorConfig implements WebMvcConfigurer {
 				.excludePathPatterns("/qna/*")
 				.excludePathPatterns("/notice/selectOne");
 		
-		registry.addInterceptor(noticeInterceptor)
-				.addPathPatterns("/notice/*")
-				.excludePathPatterns("/notice/selectList")
-				.excludePathPatterns("/notice/selectOne");
+//		registry.addInterceptor(noticeInterceptor)
+//				.addPathPatterns("/notice/*")
+//				.excludePathPatterns("/notice/selectList")
+//				.excludePathPatterns("/notice/selectOne");
 		
 		
 		registry.addInterceptor(updateInterceptor)

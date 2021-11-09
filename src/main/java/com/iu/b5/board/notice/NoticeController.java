@@ -35,7 +35,7 @@ public class NoticeController {
 	//접근지정자 그외지정자 리턴타입 메서드명(매개변수선언){}
 	
 	@GetMapping("insert")
-	public String setInsert()throws Exception{
+	public String setInsert(@ModelAttribute BoardVO boardVO)throws Exception{
 		return "board/insert";
 	}
 	
