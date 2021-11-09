@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,17 +10,48 @@
 <body>
 	<h1>MemberJoin Page</h1>
 	
-	<form action="./memberJoin" method="post" enctype="multipart/form-data">
-		ID : <input type="text" name="id"><br>
-		PW : <input type="password" name="pw"><br>
-		Pwcheck : <input type="password" name="pwCheck"><br>
-		Name : <input type="text" name="name"><br>
-		Email: <input type="email" name="email"><br>
-		Photo : <input type="file" name="files"><br>
-		<button type="submit">Join</button>
+	
+	<form:form modelAttribute="memberVO" enctype="multipart/form-data">
+		<div>
+		ID <form:input path="id"/>
+		<form:errors path="id"></form:errors>
+		</div>
+		
+		<div>
+		PW <form:password path="pw"/>
+		<form:errors path="pw"></form:errors>
+		</div>
+		<div>
+		PWCheck <form:password path="pwCheck"/>
+		<form:errors path="pwCheck"></form:errors>
+		</div>		
+		
+		<div>
+		Name <form:input path="name"/>
+		<form:errors path="name"></form:errors>
+		</div>	
+		<div>
+		email <form:input path="email" />
+		<form:errors path="email"></form:errors>
+		</div>	
+		
+		<div>
+		age <form:input path="age"/>
+		<form:errors path="age"></form:errors>
+		</div>
+		
+		<div>
+		Birth <form:input path="birth"/>
+		<form:errors path="birth"></form:errors>
+		</div>		
+		
+		<div>
+			<button>Join</button>
+		</div>
+	</form:form>
 	
 	
-	</form>
+
 
 </body>
 </html>

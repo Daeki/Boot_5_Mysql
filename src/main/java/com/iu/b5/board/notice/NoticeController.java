@@ -45,7 +45,7 @@ public class NoticeController {
 	public String setInsert(@Valid BoardVO boardVO, BindingResult bindingResult, MultipartFile [] files)throws Exception{
 
 		if(bindingResult.hasErrors()) {
-			return "redirect:./insert";
+			return "board/insert";
 		}
 		
 //		int result = noticeService.setInsert(boardVO, files);

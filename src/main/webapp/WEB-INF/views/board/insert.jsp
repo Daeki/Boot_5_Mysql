@@ -11,28 +11,34 @@
 </head>
 <body>
 	
-	<div class="container mt-3">
+	<div class="container mt-3 col-6" >
 		<h1>${board} Insert Page</h1>
 	
-		<form:form modelAttribute="boardVO" enctype="multipart/form-data">
-			<div class="mb-3 mt-3">
-				<label for="title">Title:</label>
-				<form:input path="title" id="title" cssClass="form-control"/>
+		<form:form cssClass="needs-validation" modelAttribute="boardVO" enctype="multipart/form-data">
+			<div class="form-floating mb-3 mt-3">
+				<form:input path="title" id="title" placeholder="Enter title" cssClass="form-control"/>
+				<label for="title">Title</label>
+				<form:errors path="title" cssStyle="invalid-feedback"></form:errors>
+				
 			</div>
-			<div>
-				Writer : <form:input path="writer" cssClass=""/>
+			<div class=" form-floating mb-3">
+				<form:input path="writer" id="writer" placeholder="Enter writer" cssClass="form-control"/>
+				<label for="writer">Writer</label>
+				<form:errors path="writer" cssStyle="color:red;"></form:errors>
 			</div>
-			<div>
-				Contents : <form:textarea path="contents"/>
+			<div class= "mb-3">
+				<form:textarea path="contents" rows="10" id="contents" placeholder="Enter contents" cssClass="form-control"/>
 			</div>
 			
-			<div>
-				<input type="file" name="files"><br>
+			<div class="mb-3 input-group-sm">
+				<input type="file" name="files">
+			</div>
+			<div class="mb-3 input-group-sm">
 				<input type="file" name="files">
 			</div>
 			
-			<div>
-				<button type="submit">Write</button>
+			<div class="mb-3 input-group-sm">
+				<button class="btn btn-dark" type="submit">Write</button>
 			</div>
 			
 		
