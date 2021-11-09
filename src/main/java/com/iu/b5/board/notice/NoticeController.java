@@ -3,11 +3,13 @@ package com.iu.b5.board.notice;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,14 +42,17 @@ public class NoticeController {
 	}
 	
 	@PostMapping("insert")
-	public String setInsert(BoardVO boardVO, MultipartFile [] files)throws Exception{
+	public String setInsert(@Valid BoardVO boardVO, BindingResult bindingResult, MultipartFile [] files)throws Exception{
 
-		
-		int result = noticeService.setInsert(boardVO, files);
-		
-		if(result>0) {
-			
+		if(bindingResult.hasErrors()) {
+			return "redirect:./insert";
 		}
+		
+//		int result = noticeService.setInsert(boardVO, files);
+//		
+//		if(result>0) {
+//			
+//		}
 		
 		return "redirect:./selectList";
 		
