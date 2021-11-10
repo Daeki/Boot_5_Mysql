@@ -12,10 +12,10 @@ import lombok.Data;
 @Data
 public class BoardVO {
 	private Integer num;
-	@NotBlank(message = "다 써")
+	@NotBlank
 	private String title;
 	private String contents;
-	@Size(min = 3, max = 6)
+	@Size(min = 4, max = 10)
 	private String writer;
 	private Integer hit;
 	private Date regDate;
