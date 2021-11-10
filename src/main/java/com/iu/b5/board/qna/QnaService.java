@@ -20,6 +20,15 @@ public class QnaService implements BoardService{
 	private QnaRepository qnaRepository;
 	@Autowired
 	private FileManager fileManager;
+	
+	public int setReplyInsert(BoardVO boardVO, MultipartFile [] files)throws Exception{
+		int result = qnaRepository.setRefUpdate(boardVO);
+		result = qnaRepository.setReplyInsert(boardVO);
+		
+		//파일 저장 코드 작성
+		
+		return result;
+	}
 
 	@Override
 	public int setInsert(BoardVO boardVO, MultipartFile [] files) throws Exception {
@@ -29,6 +38,8 @@ public class QnaService implements BoardService{
 		//fileManager.getUseClassPathResource("upload/notice/", files[0]);
 		 int result = qnaRepository.setInsert(boardVO);
 		
+		 result = qnaRepository.setRefUpdate(boardVO);
+		 
 		 for(MultipartFile multipartFile:files) {
 			 
 			 //multipartFile.isEmpty()

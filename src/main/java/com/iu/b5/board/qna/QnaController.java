@@ -3,11 +3,13 @@ package com.iu.b5.board.qna;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,13 +37,16 @@ public class QnaController {
 	//접근지정자 그외지정자 리턴타입 메서드명(매개변수선언){}
 	
 	@GetMapping("insert")
-	public String setInsert()throws Exception{
+	public String setInsert(@ModelAttribute BoardVO boardVO)throws Exception{
 		return "board/insert";
 	}
 	
 	@PostMapping("insert")
-	public String setInsert(BoardVO boardVO, MultipartFile [] files)throws Exception{
+	public String setInsert(@Valid BoardVO boardVO,BindingResult bindingResult , MultipartFile [] files)throws Exception{
 
+		if(bindingResult.hasErrors()) {
+			return "board/insert";
+		}
 		
 		int result = qnaService.setInsert(boardVO, files);
 		
@@ -52,6 +57,27 @@ public class QnaController {
 		return "redirect:./selectList";
 		
 	}
+	
+	@GetMapping("reply")
+	public String reply(@ModelAttribute BoardVO boardVO)throws Exception{
+		
+		return "board/reply";
+	}
+	
+	@PostMapping("reply")
+	public String reply(@Valid BoardVO boardVO, BindingResult bindingResult, MultipartFile [] files)throws Exception{
+		
+		if(bindingResult.hasErrors()) {
+			return "board/reply";
+		}
+		
+		int result = qnaService.setReplyInsert(boardVO, files);
+		
+		return "redirect:./selectList";
+		
+	}
+	
+	
 	@GetMapping("update")
 	public String setUpdate(BoardVO boardVO, Model model)throws Exception{
 		boardVO = qnaService.getSelectOne(boardVO);

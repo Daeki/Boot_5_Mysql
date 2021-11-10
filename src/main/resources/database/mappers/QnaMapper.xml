@@ -7,12 +7,30 @@
 	<insert id="setFileInsert" parameterType="BoardFileVO">
 		insert into qnaFiles values(null,#{num}, #{fileName}, #{oriName})
 	</insert>
+	
+	<insert id="setReplyInsert" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="num">
+		insert into qna (num, title, contents, writer, hit, regDate, ref, step, depth)
+		values (null, #{title}, #{contents}, #{writer}, 0, now(), 
+		(select R.ref from (select * from qna where num=#{num}) R),
+		(select S.step+1 from (select * from qna where num=#{num}) S),
+		(select D.depth+1 from (select * from qna where num=#{num}) D)
+		)
+	</insert>
+	
+	<update id="setReplyUpdate" parameterType="BoardVO">
+		update qna set step=step+1 where 
+		ref=(select ref from qna where num=#{num})
+		and
+		step > (select step from qna where num=#{num})
+	</update>
 
-
+	<update id="setRefUpdate" parameterType="BoardVO">
+		update qna set ref=#{num} where num=#{num} 
+	</update>
 
 	<insert id="setInsert" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="num">
 		insert into qna (num, title, contents, writer, hit, regDate, ref, step, depth)
-		values (#{num}, #{title}, #{contents}, #{writer}, 0, now(), 0,0,0)
+		values (#{num}, #{title}, #{contents}, #{writer}, 0, now(), #{num},0,0)
 	</insert>
 	
 	<update id="setUpdate" parameterType="BoardVO">
@@ -55,7 +73,7 @@
 				<otherwise>title</otherwise>
 			</choose>
 		like concat('%',#{search}, '%')
-		order by num desc
+		order by ref desc, step asc
 		limit #{startRow}, #{perPage}
 	</select>
 	
