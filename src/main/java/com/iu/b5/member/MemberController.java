@@ -22,6 +22,7 @@ public class MemberController {
 	
 	@GetMapping("memberLogout")
 	public String getLogout(HttpSession session)throws Exception{
+		
 		session.invalidate();
 		return "redirect:../";
 	}
