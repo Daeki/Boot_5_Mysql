@@ -28,18 +28,25 @@ public class MemberController {
 	}
 	
 	@GetMapping("memberLogin")
-	public void getSelectOne()throws Exception{}
-	
-	@PostMapping("memberLogin")
-	public String getSelectOne(MemberVO memberVO, HttpSession session)throws Exception{
-		memberVO = memberService.getSelectOne(memberVO);
-		
-		if(memberVO != null) {
-			session.setAttribute("member", memberVO);
-		}
-		
-		return "redirect:../";
+	public void getSelectOne()throws Exception{
+		System.out.println("Member Login");
 	}
+	
+	@GetMapping("memberLoginResult")
+	public void getmemberLoginResult() {
+		System.out.println("memberLoginResult");
+	}
+	
+//	@PostMapping("memberLogin")
+//	public String getSelectOne(MemberVO memberVO, HttpSession session)throws Exception{
+//		System.out.println("Member Login Process");
+//		memberVO = memberService.getSelectOne(memberVO);
+//		if(memberVO != null) {
+//			session.setAttribute("member", memberVO);
+//		}
+//		
+//		return "redirect:../";
+//	}
 	
 	
 	@GetMapping("memberJoin")
@@ -56,9 +63,9 @@ public class MemberController {
 		}
 		
 		
-//		int result = memberService.setInsert(memberVO, files);
-//		ModelAndView mv = new ModelAndView();
-//		mv.setViewName("redirect:../");
+		int result = memberService.setInsert(memberVO, files);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:../");
 		
 		return "redirect:../";
 	}

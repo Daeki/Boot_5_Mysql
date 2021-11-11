@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
@@ -12,14 +13,15 @@ class MemberRepositoryTest {
 
 	@Autowired
 	private MemberRepository memberRepository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Test
 	void getSelectOneTest()throws Exception{
-		MemberVO memberVO = new MemberVO();
-		memberVO.setId("user");
-		memberVO.setPw("user111");
-		memberVO = memberRepository.getSelectOne(memberVO);
-		assertNotNull(memberVO);
+		
+		
+		
+		
 	}
 	
 	@Test
