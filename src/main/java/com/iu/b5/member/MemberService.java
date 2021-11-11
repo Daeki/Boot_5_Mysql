@@ -53,23 +53,16 @@ public class MemberService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		System.out.println("Load User By UserName");
-		System.out.println(username);
 		MemberVO memberVO=null;
 		try {
 			memberVO = memberRepository.getSelectOne(username);
-			System.out.println(memberVO.getPassword());
 			//memberVO.setPw(bCryptPasswordEncoder.encode(memberVO.getPw()));
-			System.out.println(memberVO.getPassword());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		for(RoleVO roleVO:memberVO.getRoles()) {
-			System.out.println(roleVO.getRoleName());
-		}
-		
-		//memberVO.setEnabled(true);
+
 		
 		//Spring security 가 UserDetails리턴 받아서 비번을 비교 진행
 		return memberVO;
@@ -84,6 +77,8 @@ public class MemberService implements UserDetailsService {
 		
 		memberVO.setPw(bCryptPasswordEncoder.encode(memberVO.getPw()));
 		memberVO.setEnabled(true);
+		
+		//Member_Role에 Insert 추가
 		
 		int result = memberRepository.setInsert(memberVO);
 		
