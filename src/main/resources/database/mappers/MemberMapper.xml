@@ -22,7 +22,7 @@
   	
   	<resultMap type="MemberVO" id="getLoginResult">
   		<id column="id" property="id"/>
-  		<result column="pw" property="pw"/>
+  		<result column="pw" property="pw"/> 
   		<result column="name" property="name"/>
   		<result column="email" property="email"/>
   		<result column="enabled" property="enabled"/>

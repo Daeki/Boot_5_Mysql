@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 								.antMatchers("/").permitAll()
 								.antMatchers("/notice/selectList", "/notice/selectOne").permitAll()
 								.antMatchers("/notice/**").hasRole("ADMIN")
+								
 								//.antMatchers("/notice/insert", "/notice/update", "/notice/delete").hasRole("ADMIN")
 								//ROLE_ 를 제외한 나머지 roleName
 								//.antMatchers("/member/memberLogin").permitAll()
@@ -51,12 +52,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin()
 						.loginPage("/member/memberLogin")
 						.defaultSuccessUrl("/")
-						//파라미터이름은 security에서는 username 사용
+						//파라미터이름은 security에서는 username, password 사용
 						//파라미터 이름이 다를 경우 작성
 						.usernameParameter("id")
 						.passwordParameter("pw")
 						.permitAll()
-						
+						.and()
+			.logout()
+						.logoutUrl("/member/memberLogout")
+						.logoutSuccessUrl("/")
+						.invalidateHttpSession(true)
+						.deleteCookies("JSESSIONID")
+						.permitAll()
 						;
 		
 	}
