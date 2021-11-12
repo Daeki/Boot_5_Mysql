@@ -1,5 +1,8 @@
 package com.iu.b5.member;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -78,9 +81,13 @@ public class MemberService implements UserDetailsService {
 		memberVO.setPw(bCryptPasswordEncoder.encode(memberVO.getPw()));
 		memberVO.setEnabled(true);
 		
-		//Member_Role에 Insert 추가
-		
 		int result = memberRepository.setInsert(memberVO);
+		
+		//Member_Role에 Insert 추가
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", memberVO.getId());
+		map.put("num", 2);
+		result = memberRepository.setMemberRoleInsert(map);
 		
 		if(files != null && !files.isEmpty()) {
 			String fileName = fileManager.getUseServletContext("upload/member", files);

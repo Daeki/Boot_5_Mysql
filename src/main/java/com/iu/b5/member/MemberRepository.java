@@ -1,11 +1,15 @@
 package com.iu.b5.member;
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 //@Repository
 @Mapper
 public interface MemberRepository {
+	//member_role insert
+	public int setMemberRoleInsert(Map<String, Object> map)throws Exception;
 	
 	//Id 중복 확인
 	public MemberVO getSelect(MemberVO memberVO)throws Exception;
